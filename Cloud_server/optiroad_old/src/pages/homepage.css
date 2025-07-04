@@ -1,0 +1,112 @@
+/* General Styles */
+section {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 1);
+    background: linear-gradient(135deg, #f6f8fc, #eef1f7);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Adjust the opacity as needed */ 
+    z-index: -1;
+}
+
+.homepage__overlay {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.homepage__header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.homepage__header h1 {
+    color: #4a4a4a;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.homepage__header h2 {
+    color: #007bff;
+    font-size: 1.5em;
+}
+
+.homepage__content {
+    text-align: center;
+}
+
+.homepage__text {
+    color: #555;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.homepage__buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.button-group {
+    text-align: center;
+}
+
+.bottom_group {
+    display: flex;
+    justify-content: space-between; /* Distribute space between the elements */
+    width: 100%; /* Take full width of the section */
+    margin-top: 20px; /* Add some margin to the top for spacing */}
+
+.bluetext {
+    margin-bottom: 10px;
+    font-size: 1em;
+    color: #007bff;
+}
+
+.button-register, .button-login {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.homepage__footer {
+    color: #555;
+    font-size: 1em;
+    margin-top: 20px;
+}

@@ -1,0 +1,66 @@
+CREATE TABLE Users (
+    ID SERIAL PRIMARY KEY,
+    username VARCHAR UNIQUE NOT NULL,
+    password TEXT NOT NULL,
+    email VARCHAR UNIQUE NOT NULL,
+    role VARCHAR NOT NULL
+);
+
+CREATE TABLE Logs (
+    ID SERIAL PRIMARY KEY,
+    message VARCHAR NOT NULL,
+    time_stamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    source_ip VARCHAR NOT NULL
+);
+
+CREATE TABLE Countries (
+    ID SERIAL PRIMARY KEY,
+    country_name VARCHAR NOT NULL,
+    country_code VARCHAR UNIQUE NOT NULL
+);
+
+CREATE TABLE Counties (
+    ID SERIAL PRIMARY KEY,
+    county_name VARCHAR NOT NULL,
+    country_id INT NOT NULL REFERENCES Countries(ID)
+);
+
+CREATE TABLE Cities (
+    ID SERIAL PRIMARY KEY,
+    city_name VARCHAR NOT NULL,
+    county_id INT NOT NULL REFERENCES Counties(ID),
+    lat DECIMAL NOT NULL,
+    lon DECIMAL NOT NULL
+);
+
+CREATE TABLE CityManagers (
+    ID SERIAL PRIMARY KEY,
+    user_id INT NOT NULL REFERENCES Users(ID),
+    city_id INT NOT NULL REFERENCES Cities(ID),
+    start_date DATE NOT NULL,
+    end_date DATE
+);
+
+CREATE TABLE Keys (
+    ID SERIAL PRIMARY KEY,
+    key VARCHAR UNIQUE NOT NULL,
+    created_by INT NOT NULL REFERENCES Users(ID),
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    is_used BOOLEAN DEFAULT FALSE,
+    used_by INT REFERENCES Users(ID)
+);
+
+CREATE TABLE Devices (
+    ID SERIAL PRIMARY KEY,
+    physical_location INT NOT NULL REFERENCES Cities(ID),
+    lat DECIMAL NOT NULL,
+    lon DECIMAL NOT NULL
+);
+
+CREATE TABLE refresh_tokens (
+    id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    token_hash TEXT NOT NULL,
+    expires_at TIMESTAMP NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

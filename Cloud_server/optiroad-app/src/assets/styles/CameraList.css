@@ -1,0 +1,44 @@
+.camera-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.camera-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  background: #f8f9fa;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.camera-item:hover {
+  background: #e9ecef;
+}
+
+.status-indicator {
+  width: 80px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-right: 15px;
+}
+
+.status-indicator.online {
+  background-color: rgba(40, 167, 69, 0.2);
+  color: #28a745;
+}
+
+.status-indicator.offline {
+  background-color: rgba(220, 53, 69, 0.2);
+  color: #dc3545;
+}
+
+.camera-location {
+  flex: 1;
+  font-size: 1rem;
+}

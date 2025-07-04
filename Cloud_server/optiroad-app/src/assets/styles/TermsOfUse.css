@@ -1,0 +1,80 @@
+.terms-of-use-content {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    max-width: 700px;
+    text-align: center;
+    overflow-y: auto;
+    max-height: 70vh;
+  }
+
+  .terms-of-use-content::-webkit-scrollbar {
+    width: 8px; 
+  }
+  
+  .terms-of-use-content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1); 
+    border-radius: 10px;
+  }
+  
+  .terms-of-use-content::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #007bff, #0056b3); 
+    border-radius: 10px;
+  }
+  
+  .terms-of-use-content::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #0056b3, #003d7a); 
+  }
+  
+  .terms-of-use-content {
+    scrollbar-width: thin;
+    scrollbar-color: #007bff rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    color: #333;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+    color: #0056b3;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  p, li {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  .terms-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px auto;
+    max-width: 600px; 
+  }
+  
+  .terms-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 1.1rem;
+    color: #555;
+    text-align: left;
+  }
+  
+  .icon {
+    color: #d9534f; 
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    width: 20px; 
+    text-align: center;
+    margin-top: 3px; 
+  }
+  

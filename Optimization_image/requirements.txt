@@ -1,0 +1,11 @@
+geographiclib==2.0
+geopy==2.4.1
+sumolib==1.22.0
+traci==1.22.0
+numpy==1.23.5
+stable_baselines3==2.6.0
+shimmy==2.0.0
+requests==2.28.1
+gym==0.26.2
+pymongo==4.7.1
+torch>=2.0

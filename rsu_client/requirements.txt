@@ -1,0 +1,6 @@
+opencv-python>=4.5
+Pillow>=9.0.0
+ultralytics>=8.0.20
+ImageHash>=4.3
+Flask>=2.2.0
+requests>=2.31.0

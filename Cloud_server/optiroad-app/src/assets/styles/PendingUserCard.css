@@ -1,0 +1,98 @@
+.pending-user-card {
+  background: rgba(255, 255, 255, 0.98);
+  padding: 20px 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
+  margin: 20px auto;
+  width: 95%;
+  max-width: 800px;
+  transition: all 0.3s ease;
+}
+
+.pending-user-card:hover {
+  transform: scale(1.01);
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.2);
+}
+
+.pending-user-header h2 {
+  font-size: 1.6rem;
+  color: #007bff;
+  margin-bottom: 0;
+}
+
+.pending-user-email {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.pending-user-details {
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.pending-user-details p {
+  margin: 4px 0;
+}
+
+.pending-user-images {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.user-id-image {
+  max-width: 250px;
+  width: 100%;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pending-user-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.deny-button,
+.approve-button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 15px;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+}
+
+.deny-button {
+  background-color: #e74c3c;
+}
+
+.approve-button {
+  background-color: #2ecc71;
+}
+
+.deny-button:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(231, 76, 60, 0.3);
+}
+
+.approve-button:hover {
+  background-color: #27ae60;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(46, 204, 113, 0.3);
+}
+
+.deny-button:active,
+.approve-button:active {
+  transform: translateY(5px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}

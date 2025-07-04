@@ -1,0 +1,140 @@
+section {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #f6f8fc, #eef1f7);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  a {
+    cursor: pointer;
+  }
+
+  h1 {
+    text-align: center;
+    color: #4a4a4a;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+  }
+  
+  .errmsg {
+    color: #d8000c;
+    background-color: #ffbaba;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .offscreen {
+    position: absolute;
+    left: -9999px;
+  }
+  
+  /* Form Styles */
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #555;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  input {
+    padding: 12px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+  }
+  
+  /* Instructions and Validation */
+  .instructions {
+    font-size: 0.875em;
+    background: #e6f7ff;
+    color: #0056b3;
+    padding: 10px;
+    border: 1px solid #b3d7ff;
+    border-radius: 5px;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .instructions span {
+    margin-right: 5px;
+  }
+  
+  .valid {
+    color: #28a745;
+    margin-left: 10px;
+  }
+  
+  .invalid {
+    color: #dc3545;
+    margin-left: 10px;
+  }
+  
+  .hide {
+    display: none;
+  }
+  
+  /* Submit Button */
+  button {
+    margin-top: 20px;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+  
+  button:not(:disabled):hover {
+    background: linear-gradient(135deg, #0056b3, #003d7a);
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+  }
+  
+  /* Link Styles */
+  .line {
+    display: inline-block;
+    margin-top: 15px;
+    color: #007bff;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .line a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+  }
+  
+  .line a:hover {
+    text-decoration: underline;
+  }
+  
