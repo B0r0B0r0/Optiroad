@@ -27,8 +27,8 @@ class Config:
     # Mail Configuration
     MAIL_SERVER = 'smtp.gmail.com'
     MAIL_PORT = 587
-    MAIL_USERNAME = "stinaalin@gmail.com"
-    MAIL_PASSWORD = "skgr kvav qjtc vdbp"
+    MAIL_USERNAME = "s***n@gmail.com"
+    MAIL_PASSWORD = "**** **** **** ****"
     MAIL_USE_TLS = True
     MAIL_USE_SSL = False
     
