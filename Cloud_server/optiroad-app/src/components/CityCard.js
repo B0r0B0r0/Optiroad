@@ -2,20 +2,18 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { FaVideo, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import "../assets/styles/CityCard.css";
-import { getCityCoordinates } from "../services/cityService"; // ajustează calea dacă e diferită
+import { getCityCoordinates } from "../services/cityService"; 
 
 const CityCard = ({ city }) => {
   const navigate = useNavigate();
 
   const handleClick = async () => {
-    // Salvăm metadatele orașului
     localStorage.setItem(`city:${city.name.toLowerCase()}`, JSON.stringify({
       name: city.name,
       county: city.county,
       country: city.country
     }));
 
-    // Cerem coordonatele de la backend
     const response = await getCityCoordinates({
       country: city.country,
       county: city.county,

@@ -1,6 +1,7 @@
 from database.connection import get_db_connection
 import requests
 from utils.helpers import get_country_code, geocode_city, format_name
+from database.mongo import ppo_metrics
 
 class CityService:
     @staticmethod
@@ -87,6 +88,20 @@ class CityService:
             cursor.close()
             conn.close()
 
+    @staticmethod
+    def get_city_analytics(city, county, country):
+        query = {
+            "location.country": country,
+            "location.county": county,
+            "location.city": city
+        }
+
+        cursor = ppo_metrics.find(query)
+        results = []
+        for doc in cursor:
+            doc["_id"] = str(doc["_id"])
+            results.append(doc)
+        return results   
 
     @staticmethod
     def get_city_devices(city, county, country, username, source_ip):

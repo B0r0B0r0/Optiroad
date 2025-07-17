@@ -58,6 +58,23 @@ def get_city_coordinates_from_body():
     else:
         return jsonify({"message": message}), 500
 
+@city_bp.route("get-analytics", methods=["POST"])
+@jwt_required()
+def get_city_analytics():
+    data = request.get_json()
+    city = data.get("city")
+    county = data.get("county")
+    country = data.get("country")
+
+    if not city or not county or not country:
+        return jsonify({"error": "Missing city, county or country"}), 400
+
+    analytics = CityService.get_city_analytics(city, county, country)
+
+    if analytics is not None:
+        return jsonify(analytics), 200
+
+
 @city_bp.route('/devices', methods=['POST'])
 @jwt_required()
 def get_city_devices():

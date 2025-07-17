@@ -10,7 +10,7 @@ def start_flask():
     app.run(host="0.0.0.0", port=5050, threaded=True)
 
 if __name__ == "__main__":
-    # 1. Trimitem init și așteptăm răspuns
+
     ip =get_local_ip()
     self_id, country, county, city = send_init(ip)
     while not self_id:
@@ -22,7 +22,7 @@ if __name__ == "__main__":
 
     #wait_until_next_hour()
 
-    # 2. Inițializăm detectorul și prima detecție
+
     detector = Detector(self_id, country, county, city, ip)
     
     threading.Thread(target=start_flask, daemon=True).start()
@@ -30,11 +30,6 @@ if __name__ == "__main__":
     
     detector.init_first_frame()
 
-    # 3. Legăm callback-ul pentru Flask
-
-    # 4. Pornim serverul Flask pe thread separat
-
-    # 5. Loop principal: YOLO + periodic update
     try:
         while True:
             detector.step()

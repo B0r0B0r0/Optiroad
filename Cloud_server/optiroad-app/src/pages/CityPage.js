@@ -18,19 +18,6 @@ const getVideoId = (url) => {
   return ""
 }
 
-const makeEmbedSrc = (rawUrl) => {
-  const id = getVideoId(rawUrl)
-  return `https://www.youtube.com/embed/${id}` +
-    `?autoplay=1` +
-    `&mute=1` +
-    `&loop=1` +
-    `&playlist=${id}` +
-    `&controls=0` +
-    `&disablekb=1` +
-    `&fs=0` +
-    `&modestbranding=1` +
-    `&rel=0`
-}
 
 const CityPage = () => {
   const { cityName } = useParams()
@@ -41,64 +28,68 @@ const CityPage = () => {
   const [loading, setLoading] = useState(true)
   const [cityData, setCityData] = useState(null)
 
-  useEffect(() => {
-    const fetchCityData = async () => {
-    const stored = localStorage.getItem(`city:${normalizedCityName}`)
-    const coordsRaw = localStorage.getItem(`city:coords:${normalizedCityName}`)
+useEffect(() => {
+  const stored = localStorage.getItem(`city:${normalizedCityName}`)
+  const coordsRaw = localStorage.getItem(`city:coords:${normalizedCityName}`)
 
-    if (!stored || !coordsRaw) {
-      setLoading(false)
-      return
-    }
+  if (!stored || !coordsRaw) {
+    setLoading(false)
+    return
+  }
 
-    const cityMeta = JSON.parse(stored)
-    const { lat, lon } = JSON.parse(coordsRaw)
+  const cityMeta = JSON.parse(stored)
+  const { lat, lon } = JSON.parse(coordsRaw)
 
-    if (!lat || !lon || isNaN(lat) || isNaN(lon)) {
-      console.warn("Coordonate invalide:", lat, lon)
-      setLoading(false)
-      return
-    }
+  if (!lat || !lon || isNaN(lat) || isNaN(lon)) {
+    console.warn("Coordonate invalide:", lat, lon)
+    setLoading(false)
+    return
+  }
 
-    const nextData = {
-      name: cityMeta.name,
-      county: cityMeta.county,
-      country: cityMeta.country,
-      center: [Number(lat), Number(lon)],
-      cameras: [],
-      total: 0,
-      online: 0,
-      offline: 0,
-    }
+  // Initialize city data immediately without cameras
+  const nextData = {
+    name: cityMeta.name,
+    county: cityMeta.county,
+    country: cityMeta.country,
+    center: [Number(lat), Number(lon)],
+    cameras: [],
+    total: 0,
+    online: 0,
+    offline: 0,
+  }
 
-    try {
-      const devices = await getCityDevices({
-            country: cityMeta.country,
-            county: cityMeta.county,
-            city: cityMeta.name
-          });
+  setCityData(nextData)
+  setLoading(false)
 
+  // Now fetch devices separately (without blocking the first render)
+  setCamerasLoading(true)
+  getCityDevices({
+    country: cityMeta.country,
+    county: cityMeta.county,
+    city: cityMeta.name
+  })
+    .then((devices) => {
       const onlineCount = devices.filter((d) => d.status === "online").length
       const offlineCount = devices.length - onlineCount
 
-      setCityData({
-        ...nextData,
+      setCityData((prev) => ({
+        ...prev,
         cameras: devices,
         total: devices.length,
         online: onlineCount,
         offline: offlineCount,
-      })
-    } catch (err) {
+      }))
+    })
+    .catch((err) => {
       console.error("Eroare la încărcarea camerelor:", err)
-      setCityData(nextData)
-    }
+      // Optionally show error somewhere
+    })
+    .finally(() => {
+      setCamerasLoading(false)
+    })
 
-    setLoading(false)
-  }
-
-  fetchCityData()
 }, [normalizedCityName])
-
+  const [camerasLoading, setCamerasLoading] = useState(true)
   const handleMarkerClick = (camera) => {
     setActiveCamera(camera)
   }
@@ -156,11 +147,16 @@ const CityPage = () => {
 
           <div className="camera-container">
             <h2>Cameras</h2>
-            <CameraList
-              cameras={cityData.cameras}
-              onCameraClick={handleCameraClick}
-            />
+            {camerasLoading ? (
+              <div className="cameras-loading">Loading cameras...</div>
+            ) : (
+              <CameraList
+                cameras={cityData.cameras}
+                onCameraClick={handleCameraClick}
+              />
+            )}
           </div>
+
         </div>
 
         <div className="action-buttons">

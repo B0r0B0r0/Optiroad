@@ -3,7 +3,7 @@ import config
 
 
 def get_coordinates():
-    # În viitor, poate citi din GPS sau ENV
+    #  GPS sau ENV
     return config.LATITUDE, config.LONGITUDE
 
 def send_init(ip):

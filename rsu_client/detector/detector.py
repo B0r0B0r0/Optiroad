@@ -11,6 +11,7 @@ import config
 
 class Detector:
     def __init__(self, self_id, country, county, city, ip):
+        print("[INFO] Initializing Detector...")
         self.self_id = self_id
         self.country = country
         self.county = county
@@ -70,12 +71,11 @@ class Detector:
         if not ret:
             self.cap.release()
             self.cap = cv2.VideoCapture(config.VIDEO_SOURCE)
-            return  # ieși din pasul curent fără să procesezi
+            return 
 
         current_hash = imagehash.phash(Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)))
         if self.hash - current_hash <= 5:
-            self.latest_frame = frame.copy()
-            return  # frame prea similar, ignorăm
+            return  
 
         self.hash = current_hash
         results = self.model.predict(frame, classes=config.VEHICLE_CLASSES, conf=0.5)
@@ -111,7 +111,7 @@ class Detector:
                 self.entered_timestamps.append(timestamp)
                 self.car_list.remove(car)
 
-        # Salvează latest_frame doar dacă a fost procesat
+        # Salveaza latest_frame 
         self.latest_frame = frame.copy()
 
         if config.DEBUG_VIEW:

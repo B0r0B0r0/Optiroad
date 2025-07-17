@@ -118,7 +118,6 @@ class RsuService:
         }
 
         print("Verific in postgres\n",flush=True)
-        # 1️⃣ Postgres: get number of online RSU for this city
         try:
             conn = get_db_connection()
             cursor = conn.cursor()
@@ -135,11 +134,10 @@ class RsuService:
             print(f"[ERROR] Postgres error: {e}")
             return
 
-        if online_count <= 0:
-            print(f"[WARN] No RSU registered as online for {city}")
-            return
+        ## For debugging purposes 
+        # if online_count <= 0:
+        #     return
 
-        # 2️⃣ Mongo: count distinct RSU reports for this window
         try:
             reported_count = events_collection.count_documents({
                 "location.country": country,
@@ -151,6 +149,8 @@ class RsuService:
             print(f"[ERROR] MongoDB error: {e}")
             return
 
+        ## For debugging purposes
+        online_count = 3
         if reported_count == online_count:
             try:
                 events_cursor = events_collection.find({
